@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight, PinIcon, WhatsAppIcon } from "@/components/ui/icons";
 
 export function SiteFooter() {
@@ -14,8 +14,8 @@ export function SiteFooter() {
 
       <div className="footer-grid">
         <div className="footer-brand"><p>Premium corporate gifting, branded merchandise and custom production for businesses across Pakistan.</p><a className="footer-email" href="mailto:info@futuresigning.pk">info@futuresigning.pk <ArrowRight /></a></div>
-        <nav className="footer-column" aria-label="Explore"><h3>Explore</h3><a href="#products">Products</a><a href="#solutions">Solutions</a><a href="#process">How it works</a><a href="#about">About us</a><a href="#faq">FAQ</a></nav>
-        <nav className="footer-column" aria-label="Product categories"><h3>Popular requests</h3><a href="#contact" data-interest="Corporate gift boxes">Corporate gift boxes</a><a href="#contact" data-interest="Employee onboarding kits">Onboarding kits</a><a href="#contact" data-interest="Customized coffee mugs">Customized mugs</a><a href="#contact" data-interest="Customized water bottles">Branded bottles</a><a href="#contact" data-interest="Power banks & charging accessories">Technology gifts</a></nav>
+        <nav className="footer-column" aria-label="Explore"><h3>Explore</h3><Link href="/products">Products</Link><Link href="/#solutions">Solutions</Link><Link href="/#process">How it works</Link><Link href="/#about">About us</Link><Link href="/#faq">FAQ</Link></nav>
+        <nav className="footer-column" aria-label="Product categories"><h3>Popular requests</h3><Link href="/products/corporate-gift-sets">Corporate gift sets</Link><Link href="/products/ceramic-mugs">Customized mugs</Link><Link href="/products/customized-water-bottles">Branded bottles</Link><Link href="/products/technology-gifts">Technology gifts</Link><Link href="/products/promotional-mini-fans">Promotional mini fans</Link></nav>
         <div className="footer-column footer-contact"><h3>Find us</h3><a href="https://wa.me/923001234567" target="_blank" rel="noreferrer"><WhatsAppIcon /> +92 300 1234567</a><p><PinIcon /> Gulberg III, Lahore, Pakistan</p><p className="footer-delivery">Nationwide delivery across Pakistan</p><div className="social-links" aria-label="Social media"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">TikTok</a></div></div>
       </div>
 
