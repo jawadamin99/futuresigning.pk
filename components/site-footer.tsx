@@ -1,33 +1,26 @@
 import Image from "next/image";
-import { ArrowUpRight, MailIcon, PinIcon, WhatsAppIcon } from "@/components/ui/icons";
-
-const wa = "https://wa.me/923001234567";
-const footerGroups = [
-  { title: "Explore", links: [["Products", "#products"], ["Solutions", "#solutions"], ["How it works", "#process"], ["About", "#about"]] },
-  { title: "Product directions", links: [["Corporate gifts", "#products"], ["Drinkware", "#products"], ["Technology", "#products"], ["Custom packaging", "#products"]] },
-] as const;
+import { ArrowRight, ArrowUpRight, PinIcon, WhatsAppIcon } from "@/components/ui/icons";
 
 export function SiteFooter() {
-  return (
-    <footer className="site-footer">
-      <div className="footer-pitch"><div className="shell footer-pitch__inner">
-        <div className="footer-pitch__brand">
-          <Image src="/images/brand/future-signing-logo-full.png" alt="Future Signing — Your Brand. On Everything." width={6000} height={2012} />
-          <p>Custom products, corporate gifting and brand production for businesses across Pakistan.</p>
-        </div>
-        <div className="footer-pitch__cta">
-          <p>Have a product, quantity or deadline in mind?</p><h2>Let&apos;s make your brand tangible.</h2>
-          <div><a className="button button--orange" href="#contact">Start a project <ArrowUpRight /></a><a className="text-link" href={wa} target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp us</a></div>
-        </div>
-      </div></div>
-      <div className="footer-info">
-        <div className="shell footer-info__grid">
-          <div className="footer-statement"><p>Your Brand.<br /><em>On Everything.</em></p><span>Lahore based · Pakistan wide</span></div>
-          {footerGroups.map((group) => <nav aria-label={group.title} key={group.title}><h3>{group.title}</h3>{group.links.map(([label, href]) => <a href={href} key={label}>{label}</a>)}</nav>)}
-          <div className="footer-contact"><h3>Talk to us</h3><a href={wa} target="_blank" rel="noreferrer"><WhatsAppIcon />+92 300 1234567</a><a href="mailto:info@futuresigning.pk"><MailIcon />info@futuresigning.pk</a><p><PinIcon />Gulberg III, Lahore, Pakistan</p></div>
-        </div>
-        <div className="shell footer-bottom"><p>© {new Date().getFullYear()} Future Signing. All rights reserved.</p><nav aria-label="Social media">{["Instagram", "Facebook", "LinkedIn", "TikTok"].map((label) => <a href="#" key={label}>{label}</a>)}</nav><a href="#top">Back to top <span>↑</span></a></div>
+  return <footer className="site-footer">
+    <div className="footer-glow" aria-hidden="true" />
+    <div className="footer-main shell">
+      <div className="footer-showcase">
+        <div><span className="eyebrow">Your next brand moment starts here</span><h2>Your brand.<br /><em>On everything.</em></h2></div>
+        <a className="footer-whatsapp" href="https://wa.me/923001234567" target="_blank" rel="noreferrer"><WhatsAppIcon /><span><small>Have a project in mind?</small><strong>Start on WhatsApp</strong></span><ArrowUpRight /></a>
       </div>
-    </footer>
-  );
+
+      <div className="footer-service-strip" aria-label="Future Signing services"><span>Corporate gifting</span><i>✦</i><span>Corporate Giveaways</span><i>✦</i><span>Employee onboarding</span><i>✦</i><span>Anything you name it...</span></div>
+
+      <div className="footer-grid">
+        <div className="footer-brand"><p>Premium corporate gifting, branded merchandise and custom production for businesses across Pakistan.</p><a className="footer-email" href="mailto:info@futuresigning.pk">info@futuresigning.pk <ArrowRight /></a></div>
+        <nav className="footer-column" aria-label="Explore"><h3>Explore</h3><a href="#products">Products</a><a href="#solutions">Solutions</a><a href="#process">How it works</a><a href="#about">About us</a><a href="#faq">FAQ</a></nav>
+        <nav className="footer-column" aria-label="Product categories"><h3>Popular requests</h3><a href="#contact" data-interest="Corporate gift boxes">Corporate gift boxes</a><a href="#contact" data-interest="Employee onboarding kits">Onboarding kits</a><a href="#contact" data-interest="Customized coffee mugs">Customized mugs</a><a href="#contact" data-interest="Customized water bottles">Branded bottles</a><a href="#contact" data-interest="Power banks & charging accessories">Technology gifts</a></nav>
+        <div className="footer-column footer-contact"><h3>Find us</h3><a href="https://wa.me/923001234567" target="_blank" rel="noreferrer"><WhatsAppIcon /> +92 300 1234567</a><p><PinIcon /> Gulberg III, Lahore, Pakistan</p><p className="footer-delivery">Nationwide delivery across Pakistan</p><div className="social-links" aria-label="Social media"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">TikTok</a></div></div>
+      </div>
+
+      <div className="footer-wordmark" aria-hidden="true">FUTURE SIGNING</div>
+    </div>
+    <div className="shell footer-bottom"><p>© {new Date().getFullYear()} Future Signing. All rights reserved.</p><p>Corporate branding · Gifting · Custom merchandise</p><a href="#top">Back to top <span>↑</span></a></div>
+  </footer>;
 }
