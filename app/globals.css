@@ -893,6 +893,7 @@ p {
 }
 
 .category-card {
+    display: block;
     overflow: hidden;
     background: #fff;
     border: 1px solid #e2ddd5
@@ -935,7 +936,7 @@ p {
     padding: 25px 28px 28px
 }
 
-.category-copy > span {
+.category-copy > .category-name {
     font-size: 1.5rem;
     font-weight: 850;
     letter-spacing: -.035em
@@ -947,7 +948,7 @@ p {
     font-size: .92rem
 }
 
-.category-copy a {
+.category-copy .category-cta {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -2491,7 +2492,7 @@ p {
     padding: 29px 31px 32px
 }
 
-.products-section .category-copy > span {
+.products-section .category-copy > .category-name {
     max-width: 520px;
     font-size: clamp(1.4rem, 1.7vw, 1.8rem);
     font-weight: 900;
@@ -3469,7 +3470,7 @@ h1, h2, h3, .section-intro h2, .intro-copy h2, .feature-grid h2, .coverage-grid 
     text-transform: uppercase
 }
 
-.category-copy > span {
+.category-copy > .category-name {
     display: block;
     line-height: 1.08
 }
@@ -3491,7 +3492,7 @@ h1, h2, h3, .section-intro h2, .intro-copy h2, .feature-grid h2, .coverage-grid 
     text-transform: uppercase
 }
 
-.category-copy a {
+.category-copy .category-cta {
     margin-top: auto
 }
 

@@ -22,15 +22,29 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   if (!product) notFound();
 
   const canonical = `/products/${product.categorySlug}/${product.slug}`;
+  const description = `${product.description} Ask Future Signing about quantities, branding, presentation and nationwide delivery in Pakistan.`;
   return {
-    title: `${product.name} | Customized Corporate Products Pakistan`,
-    description: `${product.description} Ask Future Signing about quantities, branding, presentation and nationwide delivery in Pakistan.`,
+    title: `${product.name} – Custom Branding Pakistan`,
+    description,
+    keywords: [product.name, product.category, ...product.tags, "customized products Pakistan", "corporate gifting Pakistan"],
     alternates: { canonical },
     openGraph: {
       title: `${product.name} | Future Signing`,
-      description: product.description,
+      description,
       url: canonical,
-      images: [{ url: product.images[0], alt: `${product.name} by Future Signing` }],
+      siteName: "Future Signing",
+      locale: "en_PK",
+      type: "website",
+      images: product.images.map((image, index) => ({
+        url: image,
+        alt: index === 0 ? `${product.name} by Future Signing` : `${product.name} — product view ${index + 1}`,
+      })),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Future Signing`,
+      description,
+      images: [product.images[0]],
     },
   };
 }
@@ -49,7 +63,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const productSchema = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Product", name: product.name, image: product.images.map((image) => `https://futuresigning.pk${image}`), description: product.description, category: product.category, url: `https://futuresigning.pk${productPath}`, brand: { "@type": "Brand", name: "Future Signing" } },
+      {
+        "@type": "Product",
+        "@id": `https://futuresigning.pk${productPath}#product`,
+        name: product.name,
+        image: product.images.map((image) => `https://futuresigning.pk${image}`),
+        description: product.description,
+        category: product.category,
+        url: `https://futuresigning.pk${productPath}`,
+        brand: { "@type": "Brand", name: "Future Signing" },
+        additionalProperty: [
+          { "@type": "PropertyValue", name: "Shown finish", value: product.finish },
+          { "@type": "PropertyValue", name: "Branding", value: "Recommended after artwork review" },
+          { "@type": "PropertyValue", name: "Availability", value: "Confirmed against quantity and deadline" },
+          { "@type": "PropertyValue", name: "Delivery", value: "Available across Pakistan" },
+        ],
+      },
       { "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: "https://futuresigning.pk" },
         { "@type": "ListItem", position: 2, name: "Products", item: "https://futuresigning.pk/products" },

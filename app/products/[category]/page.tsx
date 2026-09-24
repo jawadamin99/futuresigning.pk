@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   if (!category) notFound();
 
   return {
-    title: `${category.name} | Customized Corporate Products Pakistan`,
+    title: `${category.name} – Customized Corporate Products Pakistan`,
     description: category.metaDescription,
     keywords: [...category.keywords],
     alternates: { canonical: `/products/${category.slug}` },
@@ -30,7 +30,16 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       title: `${category.title} | Future Signing`,
       description: category.metaDescription,
       url: `/products/${category.slug}`,
+      siteName: "Future Signing",
+      locale: "en_PK",
+      type: "website",
       images: [{ url: category.heroImage, alt: `${category.name} by Future Signing` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.title} | Future Signing`,
+      description: category.metaDescription,
+      images: [category.heroImage],
     },
   };
 }

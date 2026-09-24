@@ -8,32 +8,59 @@ import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueProducts } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: "Customized Products & Corporate Gifts Pakistan | Future Signing",
+  title: "Customized Products & Corporate Gifts Pakistan",
   description: "Explore corporate gift boxes, employee kits, customized drinkware, technology gifts, stationery and promotional merchandise by Future Signing.",
   alternates: { canonical: "/products" },
   openGraph: {
     title: "Future Signing Product Catalogue",
     description: "Custom products, corporate gifting and branded merchandise for businesses across Pakistan.",
     url: "/products",
+    siteName: "Future Signing",
+    locale: "en_PK",
+    type: "website",
     images: [{ url: "/images/catalogue/hero-executive-kit.png", width: 1254, height: 1254, alt: "Future Signing executive branded gift set" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Future Signing Product Catalogue",
+    description: "Custom products, corporate gifting and branded merchandise for businesses across Pakistan.",
+    images: ["/images/catalogue/hero-executive-kit.png"],
   },
 };
 
-const itemListSchema = {
+const catalogueSchema = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Future Signing Product Catalogue",
-  itemListElement: catalogueProducts.map((product, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: product.name,
-    url: `https://futuresigning.pk/products/${product.categorySlug}/${product.slug}`,
-  })),
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      name: "Future Signing Product Catalogue",
+      description: "Customized products, corporate gifts and branded merchandise for businesses across Pakistan.",
+      url: "https://futuresigning.pk/products",
+      primaryImageOfPage: "https://futuresigning.pk/images/catalogue/hero-executive-kit.png",
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://futuresigning.pk" },
+        { "@type": "ListItem", position: 2, name: "Products", item: "https://futuresigning.pk/products" },
+      ],
+    },
+    {
+      "@type": "ItemList",
+      name: "Future Signing Product Catalogue",
+      itemListElement: catalogueProducts.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: product.name,
+        url: `https://futuresigning.pk/products/${product.categorySlug}/${product.slug}`,
+      })),
+    },
+  ],
 };
 
 export default function ProductsPage() {
   return <>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema).replace(/</g, "\\u003c") }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogueSchema).replace(/</g, "\\u003c") }} />
     <SiteHeader />
     <main id="main">
       <section className="catalogue-hero catalogue-hero--shop" id="top">
