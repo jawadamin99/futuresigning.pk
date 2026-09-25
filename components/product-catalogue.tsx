@@ -40,12 +40,12 @@ export function ProductCatalogue({ products = catalogueProducts, activeCategoryS
         <header className="catalogue-results__header"><div><span>{activeCategory ? activeCategory.name : "Complete collection"}</span><h2>{activeCategory ? `Explore ${activeCategory.name.toLowerCase()}.` : "All products."}</h2></div><div className="catalogue-count" aria-live="polite"><strong>{visibleProducts.length}</strong><span>{visibleProducts.length === 1 ? "result" : "results"}</span></div></header>
         <div className="catalogue-grid">
           {visibleProducts.map((product) => <article className="catalogue-card" id={product.slug} key={product.slug}>
-            <Link className="catalogue-card__image" href={`/products/${product.categorySlug}/${product.slug}`} aria-label={`View ${product.name}`}><Image src={product.images[0]} alt={`${product.name} available for customization by Future Signing`} fill sizes="(max-width: 680px) 92vw, (max-width: 1050px) 44vw, 24vw" /></Link>
-            <div className="catalogue-card__body"><span><Link href={`/products/${product.categorySlug}`}>{product.category}</Link></span><h3><Link href={`/products/${product.categorySlug}/${product.slug}`}>{product.name}</Link></h3><p>{product.description}</p><div className="catalogue-card__tags">{product.tags.map((tag) => <small key={tag}>{tag}</small>)}</div><Link href={`/products/${product.categorySlug}/${product.slug}`}>View product details <ArrowUpRight /></Link></div>
+            <Link className="catalogue-card__image" href={`/products/${product.categorySlug}/${product.slug}`} aria-label={`View ${product.name}`}><Image src={product.images[0]} alt={`${product.name} available for customization by Future Signing`} fill sizes="(max-width: 680px) 46vw, (max-width: 1050px) 44vw, 24vw" /></Link>
+            <div className="catalogue-card__body"><span><Link href={`/products/${product.categorySlug}`}>{product.category}</Link></span><h3><Link href={`/products/${product.categorySlug}/${product.slug}`}>{product.name}</Link></h3><p>{product.description}</p><div className="catalogue-card__tags">{product.tags.map((tag) => <small key={tag}>{tag}</small>)}</div><Link href={`/products/${product.categorySlug}/${product.slug}`}>View product <ArrowUpRight /></Link></div>
           </article>)}
         </div>
         {visibleProducts.length === 0 ? <div className="catalogue-empty"><h2>No matching products found.</h2><p>Try a broader search or browse another category.</p><button type="button" onClick={() => setQuery("")}>Clear search</button></div> : null}
-        <Link className="catalogue-results__next" href={activeCategory ? "/products" : `/products/${catalogueCategories[0].slug}`}>{activeCategory ? "Return to all products" : "Start with corporate gift sets"}<ArrowRight /></Link>
+        <Link className="catalogue-results__next" href={activeCategory ? "/products" : `/products/${catalogueCategories[0].slug}`}>{activeCategory ? "Return to all products" : `Start with ${catalogueCategories[0].name.toLowerCase()}`}<ArrowRight /></Link>
       </div>
     </div>
   </section>;

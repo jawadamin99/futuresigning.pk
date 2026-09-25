@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
-      images: [`${baseUrl}${category.heroImage}`],
+      ...(category.heroImage ? { images: [`${baseUrl}${category.heroImage}`] } : {}),
     })),
     ...catalogueProducts.map((product) => ({
       url: `${baseUrl}/products/${product.categorySlug}/${product.slug}`,

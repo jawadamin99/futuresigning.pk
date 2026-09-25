@@ -3,7 +3,20 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-const placeholders = Array.from({ length: 10 }, (_, index) => `Client logo placeholder ${index + 1}`);
+const clientLogos = [
+  { name: "HBL", src: "/images/client-logos/hbl.png" },
+  { name: "Askari Bank", src: "/images/client-logos/askari-bank-alt.png", compact: true },
+  { name: "JS Bank", src: "/images/client-logos/js-bank.webp" },
+  { name: "NLC", src: "/images/client-logos/nlc.png" },
+  { name: "Park View City", src: "/images/client-logos/park-view-city.png" },
+  { name: "Bahria Town", src: "/images/client-logos/bahria-town.png" },
+  { name: "Pepsi", src: "/images/client-logos/pepsi.svg" },
+  { name: "Coca-Cola", src: "/images/client-logos/coca-cola.png" },
+  { name: "DHA Lahore", src: "/images/client-logos/dha-lahore.png" },
+  { name: "UBL", src: "/images/client-logos/ubl.png" },
+  { name: "Bank Alfalah", src: "/images/client-logos/bank-alfalah.png" },
+  { name: "Packages Limited", src: "/images/client-logos/packages-limited.png" },
+];
 
 export function ClientLogoMarquee() {
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -43,7 +56,37 @@ export function ClientLogoMarquee() {
     pauseUntil.current = performance.now() + 2500;
   };
 
-  return <div className="client-logos__viewport" ref={viewportRef} onTouchStart={pauseForTouch} onTouchEnd={resumeAfterTouch} onTouchCancel={resumeAfterTouch}>
-    <div className="client-logos__track">{[0, 1].map((group) => <div className="client-logos__group" aria-hidden={group === 1} key={group}>{placeholders.map((label) => <div className="client-logo" key={`${group}-${label}`}><Image src="/images/client-logo-placeholder.svg" alt={group === 0 ? label : ""} width={260} height={90} draggable={false} /></div>)}</div>)}</div>
-  </div>;
+  return (
+    <div
+      className="client-logos__viewport"
+      ref={viewportRef}
+      onTouchStart={pauseForTouch}
+      onTouchEnd={resumeAfterTouch}
+      onTouchCancel={resumeAfterTouch}
+      aria-label="Organizations represented in our client logo wall"
+    >
+      <div className="client-logos__track">
+        {[0, 1].map((group) => (
+          <div className="client-logos__group" aria-hidden={group === 1} key={group}>
+            {clientLogos.map((logo) => (
+              <div
+                className={`client-logo${logo.compact ? " client-logo--compact" : ""}`}
+                key={`${group}-${logo.name}`}
+                title={logo.name}
+              >
+                <Image
+                  src={logo.src}
+                  alt={group === 0 ? `${logo.name} logo` : ""}
+                  width={260}
+                  height={90}
+                  sizes="(max-width: 700px) 176px, 220px"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }

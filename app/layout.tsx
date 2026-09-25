@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   appleWebApp: { capable: true, title: "Future Signing", statusBarStyle: "default" },
   robots: { index: true, follow: true },
 };
-export const viewport: Viewport = { themeColor: "#F7F5F0", colorScheme: "light" };
+export const viewport: Viewport = { themeColor: "#F7F5F0", colorScheme: "light", viewportFit: "cover" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en" suppressHydrationWarning className={`${geist.variable} ${mono.variable}`}><body>{children}</body></html>;

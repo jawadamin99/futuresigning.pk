@@ -35,7 +35,7 @@ export function SiteHeader() {
             <button type="button" aria-expanded={megaOpen} aria-controls="product-mega-menu" onClick={() => setMegaOpen((value) => !value)}>Products <span aria-hidden="true">⌄</span></button>
             <div id="product-mega-menu" className={`product-mega-menu${megaOpen ? " is-open" : ""}`}>
               <div className="shell product-mega-menu__inner">
-                <div className="product-mega-menu__intro"><span>Product catalogue</span><strong>Your brand.<br />On everything.</strong><p>Explore {catalogueProducts.length} customizable product directions across ten focused categories.</p><Link href="/products" onClick={() => setMegaOpen(false)}>View all products <ArrowUpRight /></Link></div>
+                <div className="product-mega-menu__intro"><span>Product catalogue</span><strong>Your brand.<br />On everything.</strong><p>Explore {catalogueProducts.length} customizable product directions across {catalogueCategories.length} focused categories.</p><Link href="/products" onClick={() => setMegaOpen(false)}>View all products <ArrowUpRight /></Link></div>
                 <div className="product-mega-menu__categories">{catalogueCategories.map((category) => <Link href={`/products/${category.slug}`} onClick={() => setMegaOpen(false)} key={category.slug}><span>{category.name}</span><ArrowRight /></Link>)}</div>
               </div>
             </div>
