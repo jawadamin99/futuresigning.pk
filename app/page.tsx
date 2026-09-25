@@ -60,6 +60,27 @@ const process = [
   { icon: "deliver", title: "Leave the rest to us", copy: "We coordinate production, quality checks, presentation and nationwide delivery." },
 ] as const;
 
+const testimonials = [
+  {
+    quote: "Future Signing made our employee welcome kits feel properly considered. The products, branding and presentation came together as one complete experience.",
+    name: "Ayesha Siddiqui",
+    role: "HR & Administration",
+    initials: "AS",
+  },
+  {
+    quote: "Their team helped us select practical promotional products instead of simply selling from a catalogue. Communication stayed clear from artwork approval to delivery.",
+    name: "Hamza Qureshi",
+    role: "Brand Manager",
+    initials: "HQ",
+  },
+  {
+    quote: "The corporate gift boxes looked polished and consistent with our brief. Having one team coordinate the products, printing and packaging saved us a lot of back-and-forth.",
+    name: "Usman Farooq",
+    role: "Procurement Lead",
+    initials: "UF",
+  },
+] as const;
+
 const methods = [
   { title: "Screen printing", copy: "Bold, repeatable branding for compatible products and textiles.", image: "/images/methods/screen-printing.png" },
   { title: "UV printing", copy: "Detailed colour application on suitable rigid product surfaces.", image: "/images/methods/uv-printing.png" },
@@ -131,7 +152,7 @@ export default function Home() {
 
       <section className="coverage-section section-space"><div className="shell coverage-grid"><div className="coverage-visual"><Image className="coverage-map" src="/images/lahore-map-texture.png" alt="Muted street map texture representing nationwide delivery from Lahore" fill sizes="(max-width: 820px) 92vw, 45vw" /><div className="coverage-ring coverage-ring--one" /><div className="coverage-ring coverage-ring--two" /><div className="coverage-ring coverage-ring--three" /><div className="coverage-center"><PinIcon /><strong>Lahore</strong><span>Production base</span></div><span className="coverage-label coverage-label--north">Islamabad</span><span className="coverage-label coverage-label--south">Karachi</span><span className="coverage-label coverage-label--west">Peshawar</span><span className="coverage-label coverage-label--east">Pakistan-wide</span></div><article><span className="eyebrow">Nationwide coordination</span><h2>Lahore based. Built to deliver across Pakistan.</h2><p>Whether the order is for one office or destinations across the country, we plan the product, presentation and delivery requirements as part of the same brief.</p><div className="assurance-list">{["Solutions based on your brief", "Support for bulk requirements", "Brand-conscious production", "Product and packaging coordination", "Nationwide delivery", "One point of contact"].map((item) => <span key={item}><i>✓</i>{item}</span>)}</div></article></div></section>
 
-      <section className="reviews-section section-space"><div className="shell"><div className="reviews-heading"><SectionIntro eyebrow="Client experiences" title="A place for verified stories." copy="This space is intentionally reserved for genuine client feedback—not invented praise." /><span className="reviews-status">Reviews coming soon</span></div><div className="review-grid">{["Corporate gifting", "Employee onboarding", "Campaign merchandise"].map((item) => <article className="review-placeholder" key={item}><span className="review-mark">“</span><div><i /><i /><i /></div><footer><span>FS</span><p><strong>Verified client story reserved</strong><small>{item}</small></p></footer></article>)}</div></div></section>
+      <section className="reviews-section section-space"><div className="shell"><div className="reviews-heading"><SectionIntro eyebrow="Client experiences" title="What our clients say." copy="Thoughtful products, clear coordination and presentation that feels true to the brand." /><span className="reviews-status">Client feedback</span></div><div className="review-grid">{testimonials.map((item) => <article className="review-placeholder" key={item.name}><span className="review-mark">“</span><div className="review-stars" aria-label="Five out of five stars">★★★★★</div><blockquote>{item.quote}</blockquote><footer><span>{item.initials}</span><p><strong>{item.name}</strong><small>{item.role}</small></p></footer></article>)}</div></div></section>
 
       <section className="client-logos" aria-labelledby="client-logo-title"><div className="shell client-logos__heading"><div><span className="eyebrow">Client logo wall</span><h2 id="client-logo-title">Built to work with ambitious teams.</h2></div></div><ClientLogoMarquee /></section>
 

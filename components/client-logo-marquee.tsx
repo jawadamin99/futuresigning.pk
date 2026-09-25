@@ -5,16 +5,16 @@ import { useEffect, useRef } from "react";
 
 const clientLogos = [
   { name: "HBL", src: "/images/client-logos/hbl.png" },
-  { name: "Askari Bank", src: "/images/client-logos/askari-bank-alt.png", compact: true },
+  { name: "Askari Bank", src: "/images/client-logos/askari-bank-alt.png", fit: "compact" },
   { name: "JS Bank", src: "/images/client-logos/js-bank.webp" },
-  { name: "NLC", src: "/images/client-logos/nlc.png" },
+  { name: "NLC", src: "/images/client-logos/nlc.png", fit: "square" },
   { name: "Park View City", src: "/images/client-logos/park-view-city.png" },
-  { name: "Bahria Town", src: "/images/client-logos/bahria-town.png" },
-  { name: "Pepsi", src: "/images/client-logos/pepsi.svg" },
+  { name: "Bahria Town", src: "/images/client-logos/bahria-town.png", fit: "square" },
+  { name: "Pepsi", src: "/images/client-logos/pepsi.svg", fit: "square" },
   { name: "Coca-Cola", src: "/images/client-logos/coca-cola.png" },
-  { name: "DHA Lahore", src: "/images/client-logos/dha-lahore.png" },
-  { name: "UBL", src: "/images/client-logos/ubl.png" },
-  { name: "Bank Alfalah", src: "/images/client-logos/bank-alfalah.png" },
+  { name: "DHA Lahore", src: "/images/client-logos/dha-lahore.png", fit: "square" },
+  { name: "UBL", src: "/images/client-logos/ubl.png", fit: "tall" },
+  { name: "Bank Alfalah", src: "/images/client-logos/bank-alfalah.png", fit: "tall" },
   { name: "Packages Limited", src: "/images/client-logos/packages-limited.png" },
 ];
 
@@ -70,18 +70,19 @@ export function ClientLogoMarquee() {
           <div className="client-logos__group" aria-hidden={group === 1} key={group}>
             {clientLogos.map((logo) => (
               <div
-                className={`client-logo${logo.compact ? " client-logo--compact" : ""}`}
+                className="client-logo"
                 key={`${group}-${logo.name}`}
                 title={logo.name}
               >
-                <Image
-                  src={logo.src}
-                  alt={group === 0 ? `${logo.name} logo` : ""}
-                  width={260}
-                  height={90}
-                  sizes="(max-width: 700px) 176px, 220px"
-                  draggable={false}
-                />
+                <span className={`client-logo__media${logo.fit ? ` client-logo__media--${logo.fit}` : ""}`}>
+                  <Image
+                    src={logo.src}
+                    alt={group === 0 ? `${logo.name} logo` : ""}
+                    fill
+                    sizes="(max-width: 700px) 140px, 175px"
+                    draggable={false}
+                  />
+                </span>
               </div>
             ))}
           </div>

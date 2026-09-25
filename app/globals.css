@@ -1506,24 +1506,20 @@ p {
     line-height: .6
 }
 
-.review-placeholder > div {
-    display: grid;
-    gap: 10px;
-    margin: 30px 0 38px
+.review-stars {
+    margin: 23px 0 15px;
+    color: var(--orange);
+    font-size: .86rem;
+    letter-spacing: .18em
 }
 
-.review-placeholder > div i {
-    height: 8px;
-    background: #eeece8;
-    border-radius: 10px
-}
-
-.review-placeholder > div i:nth-child(2) {
-    width: 86%
-}
-
-.review-placeholder > div i:nth-child(3) {
-    width: 62%
+.review-placeholder blockquote {
+    min-height: 150px;
+    margin: 0 0 34px;
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.7
 }
 
 .review-placeholder footer {
@@ -4472,24 +4468,40 @@ h1, h2, h3, .section-intro h2, .intro-copy h2, .feature-grid h2, .coverage-grid 
     place-items: center;
     width: 220px;
     height: 112px;
-    padding: 18px 25px;
+    padding: 15px 22px;
     overflow: hidden;
     background: #f7f5f1;
     border: 1px solid #e4dfd7;
     transition: border-color .25s, background-color .25s
 }
 
-.client-logo img {
+.client-logo__media {
+    position: relative;
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: .78;
-    filter: saturate(.72);
-    transition: opacity .25s, filter .25s, transform .25s
+    height: 62px
 }
 
-.client-logo--compact img {
-    transform: scale(1.28)
+.client-logo__media--square {
+    width: 68px;
+    height: 68px
+}
+
+.client-logo__media--tall {
+    width: 132px;
+    height: 74px
+}
+
+.client-logo__media--compact {
+    height: 78px;
+    transform: scale(1.2)
+}
+
+.client-logo__media img {
+    object-fit: contain !important;
+    opacity: .78;
+    filter: saturate(.72);
+    transition: opacity .25s, filter .25s
 }
 
 .client-logo:hover {
@@ -4497,13 +4509,9 @@ h1, h2, h3, .section-intro h2, .intro-copy h2, .feature-grid h2, .coverage-grid 
     border-color: var(--orange)
 }
 
-.client-logo:hover img {
+.client-logo:hover .client-logo__media img {
     opacity: 1;
     filter: saturate(1)
-}
-
-.client-logo--compact:hover img {
-    transform: scale(1.32)
 }
 
 .client-logos__viewport:hover .client-logos__track {
@@ -4538,7 +4546,25 @@ h1, h2, h3, .section-intro h2, .intro-copy h2, .feature-grid h2, .coverage-grid 
     .client-logo {
         width: 176px;
         height: 94px;
-        padding: 16px 20px
+        padding: 13px 18px
+    }
+
+    .client-logo__media {
+        height: 54px
+    }
+
+    .client-logo__media--square {
+        width: 58px;
+        height: 58px
+    }
+
+    .client-logo__media--tall {
+        width: 112px;
+        height: 62px
+    }
+
+    .client-logo__media--compact {
+        height: 66px
     }
 
     .client-logos__track {
