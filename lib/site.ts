@@ -3,5 +3,5 @@ export const siteContact = {
   phoneInternational: "+923294650743",
   phoneHref: "tel:+923294650743",
   whatsappHref: "https://wa.me/923294650743",
-  email: "info@futuresigning.pk",
+  email: "futuresigning.pk@gmail.com",
 } as const;
