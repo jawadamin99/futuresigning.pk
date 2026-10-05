@@ -74,7 +74,7 @@ export function buildQuoteEmail(lead: QuoteLead, reference: string, submittedAt:
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f0eb;padding:24px 12px;"><tr><td align="center">
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:700px;background:#fff;border-collapse:collapse;border-top:6px solid ${orange};box-shadow:0 14px 38px rgba(32,33,36,.12);">
       <tr><td style="padding:28px 34px;background:${ink};">
-        <img src="https://futuresigning.pk/images/brand/future-signing-logo.png" width="240" alt="Future Signing" style="display:block;max-width:100%;height:auto;background:#fff;padding:10px 14px;">
+        <img src="cid:future-signing-logo@futuresigning.pk" width="240" alt="Future Signing" style="display:block;max-width:100%;height:auto;background:#fff;padding:10px 14px;">
         <p style="margin:22px 0 6px;color:${orange};font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;">New website inquiry</p>
         <h1 style="margin:0;color:#fff;font-size:30px;line-height:1.15;">Corporate quote request</h1>
         <p style="margin:10px 0 0;color:#b9bbbd;font-size:14px;line-height:1.5;">${escapeHtml(submitted)} · ${escapeHtml(reference)}</p>
