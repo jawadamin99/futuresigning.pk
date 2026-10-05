@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories, getCategory, getProductsByCategory } from "@/data/products";
-import { siteContact } from "@/lib/site";
+import { siteContact, siteUrl } from "@/lib/site";
 
 type CategoryPageProps = {
   params: Promise<{ category: string }>;
@@ -51,7 +51,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const category = getCategory(categorySlug);
   if (!category) notFound();
   const products = getProductsByCategory(category.slug);
-  const path = `https://futuresigning.pk/products/${category.slug}`;
+  const path = `${siteUrl}/products/${category.slug}`;
   const enquiryMessage = encodeURIComponent(`Hello Future Signing, I would like to discuss a project involving ${category.name}. Please share suitable product and branding options.`);
 
   const categoryGraph: Record<string, unknown>[] = [
@@ -60,10 +60,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       name: category.name,
       description: category.metaDescription,
       url: path,
-      ...(category.heroImage ? { primaryImageOfPage: `https://futuresigning.pk${category.heroImage}` } : {}),
+      ...(category.heroImage ? { primaryImageOfPage: `${siteUrl}${category.heroImage}` } : {}),
     },
     { "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://futuresigning.pk" },
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
       { "@type": "ListItem", position: 2, name: category.name, item: path },
     ] },
   ];

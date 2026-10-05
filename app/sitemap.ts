@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { catalogueCategories, catalogueProducts } from "@/data/products";
+import { siteUrl } from "@/lib/site";
 
-const baseUrl = "https://futuresigning.pk";
+const baseUrl = siteUrl;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

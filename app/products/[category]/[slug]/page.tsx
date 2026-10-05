@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueProducts, getCategory, getLegacyProduct, getProduct } from "@/data/products";
-import { siteContact } from "@/lib/site";
+import { siteContact, siteUrl } from "@/lib/site";
 
 type ProductPageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -73,12 +73,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
     "@graph": [
       {
         "@type": "Product",
-        "@id": `https://futuresigning.pk${productPath}#product`,
+        "@id": `${siteUrl}${productPath}#product`,
         name: product.name,
-        image: product.images.map((image) => `https://futuresigning.pk${image}`),
+        image: product.images.map((image) => `${siteUrl}${image}`),
         description: product.description,
         category: product.category,
-        url: `https://futuresigning.pk${productPath}`,
+        url: `${siteUrl}${productPath}`,
         brand: { "@type": "Brand", name: "Future Signing" },
         additionalProperty: [
           { "@type": "PropertyValue", name: "Shown finish", value: product.finish },
@@ -88,9 +88,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
         ],
       },
       { "@type": "BreadcrumbList", itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://futuresigning.pk" },
-        { "@type": "ListItem", position: 2, name: category.name, item: `https://futuresigning.pk/products/${category.slug}` },
-        { "@type": "ListItem", position: 3, name: product.name, item: `https://futuresigning.pk${productPath}` },
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: category.name, item: `${siteUrl}/products/${category.slug}` },
+        { "@type": "ListItem", position: 3, name: product.name, item: `${siteUrl}${productPath}` },
       ] },
     ],
   };

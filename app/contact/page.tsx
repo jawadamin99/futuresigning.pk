@@ -4,7 +4,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
-import { siteContact } from "@/lib/site";
+import { siteContact, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote",
@@ -23,8 +23,8 @@ export default function ContactPage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Future Signing",
-    url: "https://futuresigning.pk",
-    logo: "https://futuresigning.pk/images/brand/future-signing-logo-full.png",
+    url: siteUrl,
+    logo: `${siteUrl}/images/brand/future-signing-logo-full.png`,
     email: siteContact.email,
     telephone: siteContact.phoneInternational,
     areaServed: { "@type": "Country", name: "Pakistan" },

@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueProducts } from "@/data/products";
-import { siteContact } from "@/lib/site";
+import { siteContact, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Customized Products & Corporate Gifts Pakistan",
@@ -36,14 +36,14 @@ const catalogueSchema = {
       "@type": "CollectionPage",
       name: "Future Signing Product Catalogue",
       description: "Customized products, corporate gifts and branded merchandise for businesses across Pakistan.",
-      url: "https://futuresigning.pk/products",
-      primaryImageOfPage: "https://futuresigning.pk/images/catalogue/hero-executive-kit.png",
+      url: `${siteUrl}/products`,
+      primaryImageOfPage: `${siteUrl}/images/catalogue/hero-executive-kit.png`,
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://futuresigning.pk" },
-        { "@type": "ListItem", position: 2, name: "Products", item: "https://futuresigning.pk/products" },
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products` },
       ],
     },
     {
@@ -53,7 +53,7 @@ const catalogueSchema = {
         "@type": "ListItem",
         position: index + 1,
         name: product.name,
-        url: `https://futuresigning.pk/products/${product.categorySlug}/${product.slug}`,
+        url: `${siteUrl}/products/${product.categorySlug}/${product.slug}`,
       })),
     },
   ],

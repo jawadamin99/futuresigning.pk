@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://futuresigning.pk"),
+  metadataBase: new URL(siteUrl),
   applicationName: "Future Signing",
   title: {
     default: "Future Signing",
@@ -23,5 +24,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#F7F5F0", colorScheme: "light", viewportFit: "cover" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning className={`${geist.variable} ${mono.variable}`}><body>{children}</body></html>;
+  return <html lang="en" suppressHydrationWarning className={`${geist.variable} ${mono.variable}`}><head><link rel="describedby" href="/llms.txt" type="text/markdown" /></head><body>{children}</body></html>;
 }

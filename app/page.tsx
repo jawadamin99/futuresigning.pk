@@ -7,7 +7,7 @@ import { HeroSlider } from "@/components/hero-slider";
 import { ClientLogoMarquee } from "@/components/client-logo-marquee";
 import { ArrowRight, ArrowUpRight, MailIcon, PinIcon, ProcessIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories } from "@/data/products";
-import { siteContact } from "@/lib/site";
+import { siteContact, siteUrl } from "@/lib/site";
 
 const wa = siteContact.whatsappHref;
 const trustItems = ["Corporate gifting", "Employee onboarding", "Custom merchandise", "Bulk-order support", "Nationwide delivery"];
@@ -106,7 +106,7 @@ const faqs = [
 ] as const;
 
 const organizationSchema = {
-  "@context": "https://schema.org", "@type": "Organization", name: "Future Signing", slogan: "Your Brand. On Everything.", url: "https://futuresigning.pk", logo: "https://futuresigning.pk/images/brand/future-signing-logo-full.png", email: siteContact.email, telephone: siteContact.phoneInternational, areaServed: { "@type": "Country", name: "Pakistan" },
+  "@context": "https://schema.org", "@type": "Organization", name: "Future Signing", slogan: "Your Brand. On Everything.", url: siteUrl, logo: `${siteUrl}/images/brand/future-signing-logo-full.png`, email: siteContact.email, telephone: siteContact.phoneInternational, areaServed: { "@type": "Country", name: "Pakistan" },
 };
 const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
 

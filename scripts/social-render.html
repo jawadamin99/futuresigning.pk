@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #f7f4ee; }
+    .asset { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+    .cover { background: url('../public/images/social-media/social-cover-background.png') center center / cover no-repeat; }
+    .cover::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 51%; background: rgba(255,255,255,.91); clip-path: polygon(0 0, 100% 0, 89% 100%, 0 100%); }
+    .cover::after { content: ''; position: absolute; inset: 0 0 auto; height: 10px; background: #F36C21; }
+    .cover-content { position: absolute; z-index: 2; left: 7.5%; top: 50%; width: 42%; transform: translateY(-49%); }
+    .eyebrow { margin: 0 0 8%; color: #F36C21; font-size: clamp(14px,1.1vw,18px); font-weight: 800; letter-spacing: .14em; white-space: nowrap; }
+    .full-logo { display: block; width: 82%; height: auto; }
+    .cover-copy { margin: 7% 0 0; color: #202124; font-size: clamp(18px,1.48vw,25px); line-height: 1.3; font-weight: 700; }
+    .domain { margin: 4% 0 0; color: #202124; font-size: clamp(15px,1.15vw,19px); font-weight: 800; letter-spacing: .04em; }
+    .whatsapp .cover-content { width: 46%; }
+    .whatsapp .eyebrow { margin-bottom: 9%; font-size: clamp(12px,1.18vw,16px); }
+    .whatsapp .cover-copy { font-size: clamp(16px,1.65vw,21px); }
+    .profile { background: #f7f4ee; }
+    .profile::before { content: ''; position: absolute; inset: 0; background: rgba(243,108,33,.09); clip-path: polygon(54% 0,100% 0,100% 100%,86% 100%); }
+    .profile::after { content: ''; position: absolute; inset: 4%; border: 18px solid #F36C21; border-radius: 50%; box-shadow: inset 0 0 0 30px #f7f4ee, inset 0 0 0 33px rgba(32,33,36,.12); }
+    .profile-icon { position: absolute; z-index: 2; width: 62%; height: 62%; object-fit: contain; left: 19%; top: 19%; }
+    .instagram::before { clip-path: polygon(47% 0,100% 0,100% 100%,79% 100%); }
+  </style>
+</head>
+<body>
+  <main id="asset" class="asset"></main>
+  <script>
+    const type = new URLSearchParams(location.search).get('asset') || 'facebook';
+    const asset = document.getElementById('asset');
+    if (type === 'facebook' || type === 'whatsapp-cover') {
+      asset.className = `asset cover ${type === 'whatsapp-cover' ? 'whatsapp' : ''}`;
+      asset.innerHTML = `<div class="cover-content"><p class="eyebrow">CORPORATE GIFTING&nbsp; • &nbsp;CUSTOM BRANDING&nbsp; • &nbsp;ALL PAKISTAN</p><img class="full-logo" src="../public/images/brand/future-signing-logo-full.png" alt="Future Signing"><p class="cover-copy">Premium branded products, made around your brief.</p><p class="domain">futuresigning.pk</p></div>`;
+    } else {
+      asset.className = `asset profile ${type === 'instagram' ? 'instagram' : ''}`;
+      asset.innerHTML = `<img class="profile-icon" src="../public/images/brand/fs-favicon.png" alt="Future Signing FS icon">`;
+    }
+  </script>
+</body>
+</html>
