@@ -7,8 +7,9 @@ import { HeroSlider } from "@/components/hero-slider";
 import { ClientLogoMarquee } from "@/components/client-logo-marquee";
 import { ArrowRight, ArrowUpRight, MailIcon, PinIcon, ProcessIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories } from "@/data/products";
+import { siteContact } from "@/lib/site";
 
-const wa = "https://wa.me/923001234567";
+const wa = siteContact.whatsappHref;
 const trustItems = ["Corporate gifting", "Employee onboarding", "Custom merchandise", "Bulk-order support", "Nationwide delivery"];
 const productMarqueeItems = ["Corporate gift boxes", "Onboarding kits", "Customized mugs", "Branded bottles", "Metal pens", "Custom keychains", "Diaries & notebooks", "Charging accessories"];
 
@@ -105,7 +106,7 @@ const faqs = [
 ] as const;
 
 const organizationSchema = {
-  "@context": "https://schema.org", "@type": ["Organization", "LocalBusiness"], name: "Future Signing", slogan: "Your Brand. On Everything.", url: "https://futuresigning.pk", logo: "https://futuresigning.pk/images/brand/future-signing-logo-full.png", email: "info@futuresigning.pk", telephone: "+92 300 1234567", address: { "@type": "PostalAddress", streetAddress: "Gulberg III", addressLocality: "Lahore", addressCountry: "PK" }, areaServed: { "@type": "Country", name: "Pakistan" },
+  "@context": "https://schema.org", "@type": "Organization", name: "Future Signing", slogan: "Your Brand. On Everything.", url: "https://futuresigning.pk", logo: "https://futuresigning.pk/images/brand/future-signing-logo-full.png", email: siteContact.email, telephone: siteContact.phoneInternational, areaServed: { "@type": "Country", name: "Pakistan" },
 };
 const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
 
@@ -158,7 +159,7 @@ export default function Home() {
 
       <section className="faq-section section-space" id="faq"><div className="shell faq-grid"><header className="faq-heading"><span className="eyebrow">Good questions, clear answers</span><h2>Before your project starts.</h2><p>Every order is custom, but the first conversation can still be straightforward.</p><a className="text-link" href="#contact">Ask something specific <ArrowRight /></a></header><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<i><ArrowRight /></i></summary><p>{answer}</p></details>)}</div></div></section>
 
-      <section className="enquiry-section section-space" id="contact"><div className="shell"><div className="enquiry-heading"><div><span className="eyebrow">Start a project</span><h2>Tell us what you need.<br /><em>We’ll shape the route.</em></h2></div><div><p>Share what you know so far. Your answers will open as a prepared WhatsApp enquiry.</p><a href="mailto:info@futuresigning.pk"><MailIcon /> info@futuresigning.pk</a></div></div><EnquiryForm /></div></section>
+      <section className="enquiry-section section-space" id="contact"><div className="shell"><div className="enquiry-heading"><div><span className="eyebrow">Start a project</span><h2>Tell us what you need.<br /><em>We’ll shape the route.</em></h2></div><div><p>Share what you know so far. Your request will be emailed directly to the Future Signing team.</p><a href={`mailto:${siteContact.email}`}><MailIcon /> {siteContact.email}</a></div></div><EnquiryForm /></div></section>
 
       <section className="final-cta"><div className="final-orbit final-orbit--one" /><div className="final-orbit final-orbit--two" /><div className="shell final-cta__inner"><span className="eyebrow">Your Brand. On Everything.</span><h2>Have a product, quantity<br />or deadline in mind?</h2><p>Let’s turn it into a clear, production-ready project.</p><div><a className="button button--light" href="#contact">Start your project <ArrowUpRight /></a><a className="button button--outline-light" href={wa} target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp us</a></div></div></section>
     </main>

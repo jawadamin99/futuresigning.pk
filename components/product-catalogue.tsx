@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories, catalogueProducts, type CatalogueProduct } from "@/data/products";
+import { siteContact } from "@/lib/site";
 
 type ProductCatalogueProps = {
   products?: readonly CatalogueProduct[];
@@ -32,7 +33,7 @@ export function ProductCatalogue({ products = catalogueProducts, activeCategoryS
               return <Link className={category.slug === activeCategorySlug ? "is-active" : undefined} aria-current={category.slug === activeCategorySlug ? "page" : undefined} href={`/products/${category.slug}`} key={category.slug}><span>{category.name}</span><small>{count}</small></Link>;
             })}
           </nav>
-          <div className="catalogue-sidebar__help"><span>Need something else?</span><p>Send a product reference and we’ll assess the possibilities.</p><a href="https://wa.me/923001234567?text=Hello%20Future%20Signing%2C%20I%20need%20help%20finding%20a%20custom%20product." target="_blank" rel="noreferrer"><WhatsAppIcon /> Ask on WhatsApp</a></div>
+          <div className="catalogue-sidebar__help"><span>Need something else?</span><p>Send a product reference and we’ll assess the possibilities.</p><a href={`${siteContact.whatsappHref}?text=Hello%20Future%20Signing%2C%20I%20need%20help%20finding%20a%20custom%20product.`} target="_blank" rel="noreferrer"><WhatsAppIcon /> Ask on WhatsApp</a></div>
         </div>
       </aside>
 

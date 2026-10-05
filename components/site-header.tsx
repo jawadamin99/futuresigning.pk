@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUpRight, CloseIcon, MailIcon, MenuIcon, PinIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowRight, ArrowUpRight, CloseIcon, MailIcon, MenuIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories, catalogueProducts } from "@/data/products";
+import { siteContact } from "@/lib/site";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ export function SiteHeader() {
 
   return <>
     <a className="skip-link" href="#main">Skip to main content</a>
-    <div className="utility-bar"><div className="shell utility-inner"><span><PinIcon /> Gulberg III, Lahore</span><span className="utility-promise">Custom branding · Corporate gifting · Nationwide delivery</span><a href="mailto:info@futuresigning.pk"><MailIcon /> info@futuresigning.pk</a></div></div>
+    <div className="utility-bar"><div className="shell utility-inner"><a href={siteContact.phoneHref}>{siteContact.phoneDisplay}</a><span className="utility-promise">Custom branding · Corporate gifting · Nationwide delivery</span><a href={`mailto:${siteContact.email}`}><MailIcon /> {siteContact.email}</a></div></div>
     <header className={`site-header${scrolled ? " scrolled" : ""}`} onKeyDown={(event) => { if (event.key === "Escape") setMegaOpen(false); }}>
       <div className="site-header__inner shell">
         <Link className="brand" href="/" aria-label="Future Signing home"><Image src="/images/brand/future-signing-logo.png" alt="Future Signing" width={1235} height={361} priority /></Link>
@@ -40,10 +41,11 @@ export function SiteHeader() {
               </div>
             </div>
           </div>
+          <Link href="/contact">Contact</Link>
         </nav>
-        <div className="header-actions"><a className="header-whatsapp" href="https://wa.me/923001234567" target="_blank" rel="noreferrer" aria-label="Enquire on WhatsApp"><WhatsAppIcon /></a><Link className="button button--dark header-cta" href="/#contact">Start a project <ArrowUpRight /></Link><button className="menu-toggle" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close navigation" : "Open navigation"}>{open ? <CloseIcon /> : <MenuIcon />}</button></div>
+        <div className="header-actions"><a className="header-whatsapp" href={siteContact.whatsappHref} target="_blank" rel="noreferrer" aria-label="Enquire on WhatsApp"><WhatsAppIcon /></a><Link className="button button--dark header-cta" href="/contact#quote">Start a project <ArrowUpRight /></Link><button className="menu-toggle" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close navigation" : "Open navigation"}>{open ? <CloseIcon /> : <MenuIcon />}</button></div>
       </div>
-      <div id="mobile-menu" className={`mobile-menu${open ? " open" : ""}`} aria-hidden={!open}><nav aria-label="Mobile navigation"><Link href="/" onClick={() => setOpen(false)}>Home <ArrowUpRight /></Link><Link href="/products" onClick={() => setOpen(false)}>Products <ArrowUpRight /></Link><div className="mobile-menu__categories"><span>Product categories</span>{catalogueCategories.map((category) => <Link href={`/products/${category.slug}`} onClick={() => setOpen(false)} key={category.slug}>{category.name}<ArrowRight /></Link>)}</div></nav><div className="mobile-menu__footer"><p>Gulberg III, Lahore, Pakistan</p><p>Nationwide delivery across Pakistan</p><a href="https://wa.me/923001234567" target="_blank" rel="noreferrer">WhatsApp us <ArrowUpRight /></a></div></div>
+      <div id="mobile-menu" className={`mobile-menu${open ? " open" : ""}`} aria-hidden={!open}><nav aria-label="Mobile navigation"><Link href="/" onClick={() => setOpen(false)}>Home <ArrowUpRight /></Link><Link href="/products" onClick={() => setOpen(false)}>Products <ArrowUpRight /></Link><Link href="/contact" onClick={() => setOpen(false)}>Contact <ArrowUpRight /></Link><div className="mobile-menu__categories"><span>Product categories</span>{catalogueCategories.map((category) => <Link href={`/products/${category.slug}`} onClick={() => setOpen(false)} key={category.slug}>{category.name}<ArrowRight /></Link>)}</div></nav><div className="mobile-menu__footer"><p>{siteContact.phoneDisplay}</p><p>Nationwide delivery across Pakistan</p><a href={siteContact.whatsappHref} target="_blank" rel="noreferrer">WhatsApp us <ArrowUpRight /></a></div></div>
     </header>
   </>;
 }

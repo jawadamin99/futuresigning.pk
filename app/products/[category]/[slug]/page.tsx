@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueProducts, getCategory, getLegacyProduct, getProduct } from "@/data/products";
+import { siteContact } from "@/lib/site";
 
 type ProductPageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -105,7 +106,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <span className="eyebrow">{product.category}</span><h1>{product.name}</h1><p className="product-detail__lead">{product.description}</p>
           <div className="product-detail__tags">{product.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
           <dl className="product-detail__facts"><div><dt>Shown finish</dt><dd>{product.finish}</dd></div><div><dt>Branding</dt><dd>Recommended after artwork review</dd></div><div><dt>Availability</dt><dd>Confirmed against quantity and deadline</dd></div><div><dt>Delivery</dt><dd>Available across Pakistan</dd></div></dl>
-          <div className="product-detail__actions"><a className="button button--orange" href={`https://wa.me/923001234567?text=${enquiryMessage}`} target="_blank" rel="noreferrer"><WhatsAppIcon /> Get Quote on WhatsApp</a></div>
+          <div className="product-detail__actions"><a className="button button--orange" href={`${siteContact.whatsappHref}?text=${enquiryMessage}`} target="_blank" rel="noreferrer"><WhatsAppIcon /> Get Quote on WhatsApp</a></div>
           <p className="product-detail__disclaimer">Final material, dimensions, colour availability and branding suitability are confirmed against the selected item before production.</p>
         </div></div>
       </div></section>
@@ -114,10 +115,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       {relatedProducts.length > 0 ? <section className="related-products"><div className="shell related-products__heading"><div><span className="eyebrow">Continue exploring</span><h2>More from {product.category}</h2></div><Link href={`/products/${category.slug}`}>View the category <ArrowUpRight /></Link></div><div className="shell related-products__grid">{relatedProducts.map((item) => <Link className="related-product" href={`/products/${item.categorySlug}/${item.slug}`} key={item.slug}><span className="related-product__image"><Image src={item.images[0]} alt={item.name} fill sizes="(max-width: 650px) 46vw, 31vw" /></span><span className="related-product__copy"><small>{item.category}</small><strong>{item.name}</strong><i>View product <ArrowUpRight /></i></span></Link>)}</div></section> : null}
 
-      <section className="product-detail__cta"><div className="shell"><span className="eyebrow">Need a different variation?</span><h2>Share the reference.<br />We’ll help find the right direction.</h2><a className="button button--light" href={`https://wa.me/923001234567?text=${enquiryMessage}`} target="_blank" rel="noreferrer"><WhatsAppIcon /> Start this enquiry</a></div></section>
+      <section className="product-detail__cta"><div className="shell"><span className="eyebrow">Need a different variation?</span><h2>Share the reference.<br />We’ll help find the right direction.</h2><a className="button button--light" href={`${siteContact.whatsappHref}?text=${enquiryMessage}`} target="_blank" rel="noreferrer"><WhatsAppIcon /> Start this enquiry</a></div></section>
     </main>
     <SiteFooter />
     <div className="product-mobile-enquiry-spacer" aria-hidden="true" />
-    <a className="product-mobile-enquiry" href={`https://wa.me/923001234567?text=${enquiryMessage}`} target="_blank" rel="noreferrer" aria-label={`Get a quote for ${product.name} on WhatsApp`}><WhatsAppIcon /><span>Get Quote on WhatsApp</span></a>
+    <a className="product-mobile-enquiry" href={`${siteContact.whatsappHref}?text=${enquiryMessage}`} target="_blank" rel="noreferrer" aria-label={`Get a quote for ${product.name} on WhatsApp`}><WhatsAppIcon /><span>Get Quote on WhatsApp</span></a>
   </>;
 }

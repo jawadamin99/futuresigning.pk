@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, PinIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
+import { siteContact } from "@/lib/site";
 
 export function SiteFooter() {
   return <footer className="site-footer">
@@ -7,16 +8,16 @@ export function SiteFooter() {
     <div className="footer-main shell">
       <div className="footer-showcase">
         <div><span className="eyebrow">Your next brand moment starts here</span><h2>Your brand.<br /><em>On everything.</em></h2></div>
-        <a className="footer-whatsapp" href="https://wa.me/923001234567" target="_blank" rel="noreferrer"><WhatsAppIcon /><span><small>Have a project in mind?</small><strong>Start on WhatsApp</strong></span><ArrowUpRight /></a>
+        <a className="footer-whatsapp" href={siteContact.whatsappHref} target="_blank" rel="noreferrer"><WhatsAppIcon /><span><small>Have a project in mind?</small><strong>Start on WhatsApp</strong></span><ArrowUpRight /></a>
       </div>
 
       <div className="footer-service-strip" aria-label="Future Signing services"><span>Corporate gifting</span><i>✦</i><span>Corporate Giveaways</span><i>✦</i><span>Employee onboarding</span><i>✦</i><span>Anything you name it...</span></div>
 
       <div className="footer-grid">
-        <div className="footer-brand"><p>Premium corporate gifting, branded merchandise and custom production for businesses across Pakistan.</p><a className="footer-email" href="mailto:info@futuresigning.pk">info@futuresigning.pk <ArrowRight /></a></div>
-        <nav className="footer-column" aria-label="Explore"><h3>Explore</h3><Link href="/products">Products</Link><Link href="/#solutions">Solutions</Link><Link href="/#process">How it works</Link><Link href="/#about">About us</Link><Link href="/#faq">FAQ</Link></nav>
+        <div className="footer-brand"><p>Premium corporate gifting, branded merchandise and custom production for businesses across Pakistan.</p><a className="footer-email" href={`mailto:${siteContact.email}`}>{siteContact.email} <ArrowRight /></a></div>
+        <nav className="footer-column" aria-label="Explore"><h3>Explore</h3><Link href="/products">Products</Link><Link href="/#solutions">Solutions</Link><Link href="/#process">How it works</Link><Link href="/#about">About us</Link><Link href="/#faq">FAQ</Link><Link href="/contact">Contact</Link></nav>
         <nav className="footer-column" aria-label="Product categories"><h3>Popular requests</h3><Link href="/products/gift-boxes">Corporate gift boxes</Link><Link href="/products/bottles-mugs">Bottles &amp; mugs</Link><Link href="/products/office-gifts">Office gifts</Link><Link href="/products/corporate-accessories">Corporate accessories</Link><Link href="/products/electronics-accessories">Electronics &amp; accessories</Link></nav>
-        <div className="footer-column footer-contact"><h3>Find us</h3><a href="https://wa.me/923001234567" target="_blank" rel="noreferrer"><WhatsAppIcon /> +92 300 1234567</a><p><PinIcon /> Gulberg III, Lahore, Pakistan</p><p className="footer-delivery">Nationwide delivery across Pakistan</p><div className="social-links" aria-label="Social media"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">TikTok</a></div></div>
+        <div className="footer-column footer-contact"><h3>Contact</h3><a href={siteContact.whatsappHref} target="_blank" rel="noreferrer"><WhatsAppIcon /> {siteContact.phoneDisplay}</a><a href={siteContact.phoneHref}>Call us directly</a><p className="footer-delivery">Nationwide delivery across Pakistan</p><div className="social-links" aria-label="Social media"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">TikTok</a></div></div>
       </div>
 
       <div className="footer-wordmark" aria-hidden="true">FUTURE SIGNING</div>
