@@ -1,6 +1,4 @@
 import { randomUUID } from "node:crypto";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 import { buildQuoteEmail, type QuoteLead } from "@/lib/quote-email";
@@ -76,7 +74,6 @@ export async function POST(request: Request) {
   const email = buildQuoteEmail(lead, reference, new Date());
 
   try {
-    const logo = await readFile(path.join(process.cwd(), "public/images/brand/future-signing-logo.png"));
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
@@ -95,13 +92,6 @@ export async function POST(request: Request) {
       subject: `[New Quote] ${lead.interest} — ${lead.company}`,
       text: email.text,
       html: email.html,
-      attachments: [{
-        filename: "future-signing-logo.png",
-        content: logo,
-        cid: "future-signing-logo@futuresigning.pk",
-        contentType: "image/png",
-        contentDisposition: "inline",
-      }],
     });
 
     console.info("[quote-email] Sent", { reference, messageId: info.messageId, sourcePage: lead.sourcePage });
