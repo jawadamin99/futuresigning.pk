@@ -6,19 +6,21 @@ import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+const homeTitle = "Corporate Gifting & Custom Products Pakistan | Future Signing";
+const homeDescription = "Future Signing creates corporate gift boxes, branded merchandise, drinkware, employee kits and promotional products with delivery across Pakistan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "Future Signing",
   title: {
-    default: "Future Signing",
+    default: homeTitle,
     template: "%s | Future Signing",
   },
-  description: "Premium corporate gifting, customized products, branded merchandise and custom printing from Lahore, delivered across Pakistan.",
+  description: homeDescription,
   keywords: ["Corporate gifting Pakistan", "Customized products Pakistan", "Promotional merchandise Pakistan", "Corporate gift boxes Lahore", "Branded merchandise", "Custom printing Lahore", "Employee gifting Pakistan"],
   alternates: { canonical: "/" },
-  openGraph: { title: "Future Signing — Your Brand. On Everything.", description: "Corporate gifting, branded merchandise and custom production for businesses across Pakistan.", url: "/", siteName: "Future Signing", locale: "en_PK", type: "website", images: [{ url: "/images/og/future-signing-og.png", width: 1200, height: 630, alt: "Future Signing branded executive gift set" }] },
-  twitter: { card: "summary_large_image", title: "Future Signing — Your Brand. On Everything.", description: "Corporate gifting, branded merchandise and custom production across Pakistan.", images: ["/images/og/future-signing-og.png"] },
+  openGraph: { title: homeTitle, description: homeDescription, url: "/", siteName: "Future Signing", locale: "en_PK", type: "website", images: [{ url: "/images/og/future-signing-og.png", width: 1200, height: 630, alt: "Future Signing branded executive gift set" }] },
+  twitter: { card: "summary_large_image", title: homeTitle, description: homeDescription, images: ["/images/og/future-signing-og.png"] },
   appleWebApp: { capable: true, title: "Future Signing", statusBarStyle: "default" },
   robots: { index: true, follow: true },
 };
