@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { ArrowUpRight, MailIcon } from "@/components/ui/icons";
+import { trackGoogleEvent } from "@/lib/analytics";
 
 const interests = ["Corporate gift boxes", "Employee onboarding kits", "Customized coffee mugs", "Customized water bottles", "Metal coffee mugs & tumblers", "Power banks & charging accessories", "Customized metal pens", "Customized keychains", "Notebooks & diaries", "Desk & event products", "Apparel & uniforms", "Custom packaging", "Client appreciation", "Events & conferences", "Product launches", "Recognition & festive gifting", "Something else"];
 
@@ -69,6 +70,11 @@ export function EnquiryForm() {
       const result = (await response.json()) as { message?: string; reference?: string };
       if (!response.ok) throw new Error(result.message || "Unable to send your quote request.");
 
+      trackGoogleEvent("form_submit", {
+        form_name: "quote_request",
+        page_path: window.location.pathname,
+        product_interest: String(data.get("interest") || "not_selected"),
+      });
       setState("success");
       setStatusMessage(result.message || "Thank you. We’ll contact you shortly.");
       setReference(result.reference || "");
