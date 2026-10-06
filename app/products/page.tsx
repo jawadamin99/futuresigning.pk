@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueProducts } from "@/data/products";
-import { siteContact, siteUrl } from "@/lib/site";
+import { siteContact, siteName, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Customized Products & Corporate Gifts Pakistan",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "Future Signing Product Catalogue",
     description: "Custom products, corporate gifting and branded merchandise for businesses across Pakistan.",
     url: "/products",
-    siteName: "Future Signing",
+    siteName,
     locale: "en_PK",
     type: "website",
     images: [{ url: "/images/catalogue/hero-executive-kit.png", width: 1254, height: 1254, alt: "Future Signing executive branded gift set" }],

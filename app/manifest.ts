@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { siteName } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Future Signing",
-    short_name: "Future Signing",
+    short_name: siteName,
     description: "Corporate gifting, customized products and branded merchandise for businesses across Pakistan.",
     start_url: "/",
     display: "standalone",

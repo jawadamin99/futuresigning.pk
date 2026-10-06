@@ -7,7 +7,7 @@ import { HeroSlider } from "@/components/hero-slider";
 import { ClientLogoMarquee } from "@/components/client-logo-marquee";
 import { ArrowRight, ArrowUpRight, MailIcon, PinIcon, ProcessIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories } from "@/data/products";
-import { siteContact, siteUrl } from "@/lib/site";
+import { siteContact, siteName, siteUrl } from "@/lib/site";
 
 const wa = siteContact.whatsappHref;
 const trustItems = ["Corporate gifting", "Employee onboarding", "Custom merchandise", "Bulk-order support", "Nationwide delivery"];
@@ -105,8 +105,44 @@ const faqs = [
   ["Can you create a product that is not shown here?", "Absolutely. The homepage is a starting point, not the full product universe. Send a reference or describe what you need and we will assess suitable options."],
 ] as const;
 
-const organizationSchema = {
-  "@context": "https://schema.org", "@type": "Organization", name: "Future Signing", slogan: "Your Brand. On Everything.", url: siteUrl, logo: `${siteUrl}/images/brand/future-signing-logo-full.png`, email: siteContact.email, telephone: siteContact.phoneInternational, areaServed: { "@type": "Country", name: "Pakistan" },
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Future Signing",
+      slogan: "Your Brand. On Everything.",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/images/brand/future-signing-logo-full.png`,
+        width: 6000,
+        height: 2012,
+      },
+      email: siteContact.email,
+      telephone: siteContact.phoneInternational,
+      areaServed: { "@type": "Country", name: "Pakistan" },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        telephone: siteContact.phoneInternational,
+        email: siteContact.email,
+        areaServed: "PK",
+        availableLanguage: ["English", "Urdu"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: siteName,
+      alternateName: "Future Signing",
+      description: "Corporate gifting, custom products and branded merchandise for businesses across Pakistan.",
+      inLanguage: "en-PK",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+  ],
 };
 const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
 
@@ -120,7 +156,7 @@ function CustomizationMethods() {
 
 export default function Home() {
   return <>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema).replace(/</g, "\\u003c") }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }} />
     <SiteHeader />
     <main id="main">

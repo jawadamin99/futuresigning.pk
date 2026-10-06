@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalyticsEvents } from "@/components/google-analytics-events";
 import { googleAnalyticsId } from "@/lib/analytics";
-import { siteUrl } from "@/lib/site";
+import { siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
@@ -14,7 +14,7 @@ const homeDescription = "Future Signing creates corporate gift boxes, branded me
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: "Future Signing",
+  applicationName: siteName,
   title: {
     default: homeTitle,
     template: "%s | Future Signing",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: homeDescription,
   keywords: ["Corporate gifting Pakistan", "Customized products Pakistan", "Promotional merchandise Pakistan", "Corporate gift boxes Lahore", "Branded merchandise", "Custom printing Lahore", "Employee gifting Pakistan"],
   alternates: { canonical: "/" },
-  openGraph: { title: homeTitle, description: homeDescription, url: "/", siteName: "Future Signing", locale: "en_PK", type: "website", images: [{ url: "/images/og/future-signing-og.png", width: 1200, height: 630, alt: "Future Signing branded executive gift set" }] },
+  openGraph: { title: homeTitle, description: homeDescription, url: "/", siteName, locale: "en_PK", type: "website", images: [{ url: "/images/og/future-signing-og.png", width: 1200, height: 630, alt: "Future Signing branded executive gift set" }] },
   twitter: { card: "summary_large_image", title: homeTitle, description: homeDescription, images: ["/images/og/future-signing-og.png"] },
   appleWebApp: { capable: true, title: "Future Signing", statusBarStyle: "default" },
   robots: { index: true, follow: true },

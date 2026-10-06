@@ -1,4 +1,5 @@
 export const siteUrl = "https://www.futuresigning.pk";
+export const siteName = "Future Signing";
 
 export const siteContact = {
   phoneDisplay: "0329 4650743",

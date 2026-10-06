@@ -4,7 +4,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
-import { siteContact, siteUrl } from "@/lib/site";
+import { siteContact, siteName, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote",
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     title: "Contact Future Signing",
     description: "Share your corporate gifting or customized-product brief and request a tailored quotation.",
     url: "/contact",
+    siteName,
     images: [{ url: "/images/og/future-signing-og.png", width: 1200, height: 630, alt: "Future Signing branded executive gift set" }],
   },
 };

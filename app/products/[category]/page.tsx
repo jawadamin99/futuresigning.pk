@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories, getCategory, getProductsByCategory } from "@/data/products";
-import { siteContact, siteUrl } from "@/lib/site";
+import { siteContact, siteName, siteUrl } from "@/lib/site";
 
 type CategoryPageProps = {
   params: Promise<{ category: string }>;
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       title: `${category.title} | Future Signing`,
       description: category.metaDescription,
       url: `/products/${category.slug}`,
-      siteName: "Future Signing",
+      siteName,
       locale: "en_PK",
       type: "website",
       images: [{ url: socialImage, alt: `${category.name} by Future Signing` }],

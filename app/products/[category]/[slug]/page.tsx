@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueProducts, getCategory, getLegacyProduct, getProduct } from "@/data/products";
-import { siteContact, siteUrl } from "@/lib/site";
+import { siteContact, siteName, siteUrl } from "@/lib/site";
 
 type ProductPageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       title: `${product.name} | Future Signing`,
       description,
       url: canonical,
-      siteName: "Future Signing",
+      siteName,
       locale: "en_PK",
       type: "website",
       images: product.images.map((image, index) => ({
@@ -66,7 +66,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const relatedProducts = catalogueProducts.filter((item) => item.categorySlug === product.categorySlug && item.slug !== product.slug).slice(0, 3);
   const productPath = `/products/${product.categorySlug}/${product.slug}`;
-  const enquiryMessage = encodeURIComponent(`Hello Future Signing, I am interested in the ${product.name}. Please share the available branding options, quantity guidance and quotation process.`);
+  const productUrl = `${siteUrl}${productPath}`;
+  const enquiryMessage = encodeURIComponent(`Hello Future Signing, I am interested in the ${product.name}. Please share the available branding options, quantity guidance and quotation process.\n\nProduct link: ${productUrl}`);
 
   const productSchema = {
     "@context": "https://schema.org",
