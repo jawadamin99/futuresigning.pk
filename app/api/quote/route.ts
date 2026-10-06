@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
-import { buildQuoteEmail, type QuoteLead } from "@/lib/quote-email";
+import { buildQuoteAcknowledgementEmail, buildQuoteEmail, type QuoteLead } from "@/lib/quote-email";
 import { siteContact } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -95,7 +95,34 @@ export async function POST(request: Request) {
     });
 
     console.info("[quote-email] Sent", { reference, messageId: info.messageId, sourcePage: lead.sourcePage });
-    return NextResponse.json({ message: "Thank you. We’ll review your brief and contact you shortly.", reference });
+
+    let confirmationSent = false;
+    if (lead.email) {
+      const confirmation = buildQuoteAcknowledgementEmail(lead, reference);
+
+      try {
+        const confirmationInfo = await transporter.sendMail({
+          from: `Future Signing <${contactFrom}>`,
+          to: lead.email,
+          replyTo: siteContact.email,
+          subject: confirmation.subject,
+          text: confirmation.text,
+          html: confirmation.html,
+        });
+        confirmationSent = true;
+        console.info("[quote-confirmation] Sent", { reference, messageId: confirmationInfo.messageId });
+      } catch (error) {
+        console.warn("[quote-confirmation] Delivery failed", { reference, error: error instanceof Error ? error.message : "Unknown SMTP error" });
+      }
+    }
+
+    return NextResponse.json({
+      message: confirmationSent
+        ? "We’ve emailed your confirmation. Our team will review your brief and respond within 24 hours."
+        : "Thank you. Our team will review your brief and respond within 24 hours.",
+      reference,
+      confirmationSent,
+    });
   } catch (error) {
     console.error("[quote-email] Delivery failed", { reference, error: error instanceof Error ? error.message : "Unknown SMTP error" });
     return NextResponse.json({ message: `We couldn’t send that right now. Please call or WhatsApp ${siteContact.phoneDisplay}.` }, { status: 502 });

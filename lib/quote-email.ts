@@ -1,4 +1,4 @@
-import { siteUrl } from "@/lib/site";
+import { siteContact, siteUrl } from "@/lib/site";
 
 export type QuoteLead = {
   name: string;
@@ -102,4 +102,87 @@ export function buildQuoteEmail(lead: QuoteLead, reference: string, submittedAt:
 </body></html>`;
 
   return { html, text };
+}
+
+export function buildQuoteAcknowledgementEmail(lead: QuoteLead, reference: string) {
+  const deadline = lead.deadline || "To be discussed";
+  const subject = `We received your quote request — ${reference}`;
+  const text = [
+    `Hi ${lead.name},`,
+    "",
+    "Thank you for contacting Future Signing. We’ve received your requirements and our team will review them shortly. You can expect a response within 24 hours.",
+    "",
+    "YOUR PROJECT SUMMARY",
+    `Reference: ${reference}`,
+    `Company: ${lead.company}`,
+    `Product interest: ${lead.interest}`,
+    `Estimated quantity: ${lead.quantity}`,
+    `Delivery city: ${lead.city}`,
+    `Expected deadline: ${deadline}`,
+    `Project details: ${lead.details}`,
+    "",
+    "WHAT HAPPENS NEXT",
+    "1. We review the product, quantity, branding and deadline.",
+    "2. We contact you if anything needs clarification.",
+    "3. We recommend a suitable product and production route before preparing the quotation.",
+    "",
+    "Need to add something to your brief? Reply to this email or contact us:",
+    `Phone / WhatsApp: ${siteContact.phoneDisplay}`,
+    `Email: ${siteContact.email}`,
+    `Website: ${siteUrl}`,
+    "",
+    "Your Brand. On Everything.",
+    "Future Signing",
+    "",
+    "This is an automated confirmation of your website enquiry.",
+  ].join("\n");
+
+  const html = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;background:#f2f0eb;color:${ink};font-family:Arial,Helvetica,sans-serif;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your Future Signing enquiry has been received. We’ll respond within 24 hours.</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f0eb;padding:24px 12px;"><tr><td align="center">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#fff;border-collapse:collapse;border-top:6px solid ${orange};">
+      <tr><td style="padding:28px 34px;background:${ink};">
+        <img src="${siteUrl}/images/brand/future-signing-logo.png" width="240" alt="Future Signing" style="display:block;max-width:100%;height:auto;background:#fff;padding:10px 14px;">
+        <p style="margin:22px 0 6px;color:${orange};font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;">Request received</p>
+        <h1 style="margin:0;color:#fff;font-size:30px;line-height:1.15;">Thank you for sharing your brief.</h1>
+        <p style="margin:10px 0 0;color:#b9bbbd;font-size:14px;line-height:1.5;">Reference ${escapeHtml(reference)}</p>
+      </td></tr>
+      <tr><td style="padding:30px 34px 12px;">
+        <p style="margin:0 0 14px;color:${ink};font-size:18px;line-height:1.6;">Hi <strong>${display(lead.name)}</strong>,</p>
+        <p style="margin:0;color:#5f6265;font-size:16px;line-height:1.7;">Thank you for contacting Future Signing. We’ve received your requirements and our team will review them shortly. You can expect a response within <strong style="color:${ink};">24 hours</strong>.</p>
+      </td></tr>
+      <tr><td style="padding:20px 34px 10px;">
+        <p style="margin:0 0 10px;color:${orange};font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;">Your project summary</p>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #e2ded6;border-collapse:collapse;">
+          <tr><td style="padding:14px 16px;background:#f7f5f1;color:#6b6d70;font-size:12px;font-weight:800;text-transform:uppercase;width:34%;border-bottom:1px solid #e2ded6;">Company</td><td style="padding:14px 16px;font-size:15px;font-weight:700;border-bottom:1px solid #e2ded6;">${display(lead.company)}</td></tr>
+          <tr><td style="padding:14px 16px;background:#f7f5f1;color:#6b6d70;font-size:12px;font-weight:800;text-transform:uppercase;border-bottom:1px solid #e2ded6;">Product interest</td><td style="padding:14px 16px;font-size:15px;font-weight:700;border-bottom:1px solid #e2ded6;">${display(lead.interest)}</td></tr>
+          <tr><td style="padding:14px 16px;background:#f7f5f1;color:#6b6d70;font-size:12px;font-weight:800;text-transform:uppercase;border-bottom:1px solid #e2ded6;">Quantity</td><td style="padding:14px 16px;font-size:15px;border-bottom:1px solid #e2ded6;">${display(lead.quantity)}</td></tr>
+          <tr><td style="padding:14px 16px;background:#f7f5f1;color:#6b6d70;font-size:12px;font-weight:800;text-transform:uppercase;border-bottom:1px solid #e2ded6;">Delivery city</td><td style="padding:14px 16px;font-size:15px;border-bottom:1px solid #e2ded6;">${display(lead.city)}</td></tr>
+          <tr><td style="padding:14px 16px;background:#f7f5f1;color:#6b6d70;font-size:12px;font-weight:800;text-transform:uppercase;">Deadline</td><td style="padding:14px 16px;font-size:15px;">${display(deadline)}</td></tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding:18px 34px 8px;">
+        <p style="margin:0 0 7px;color:#777;font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;">Project details</p>
+        <div style="padding:17px 18px;background:#f7f5f1;border-left:4px solid ${orange};font-size:15px;line-height:1.7;">${display(lead.details)}</div>
+      </td></tr>
+      <tr><td style="padding:22px 34px 26px;">
+        <p style="margin:0 0 12px;color:${orange};font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;">What happens next</p>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr><td style="width:28px;padding:4px 10px 10px 0;color:${orange};font-size:18px;font-weight:800;vertical-align:top;">1</td><td style="padding:4px 0 10px;color:#5f6265;font-size:15px;line-height:1.55;">We review the product, quantity, branding and deadline.</td></tr>
+          <tr><td style="width:28px;padding:4px 10px 10px 0;color:${orange};font-size:18px;font-weight:800;vertical-align:top;">2</td><td style="padding:4px 0 10px;color:#5f6265;font-size:15px;line-height:1.55;">We contact you if anything needs clarification.</td></tr>
+          <tr><td style="width:28px;padding:4px 10px 0 0;color:${orange};font-size:18px;font-weight:800;vertical-align:top;">3</td><td style="padding:4px 0 0;color:#5f6265;font-size:15px;line-height:1.55;">We recommend a suitable product and production route before preparing the quotation.</td></tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding:24px 34px;background:${ink};">
+        <p style="margin:0 0 14px;color:#fff;font-size:16px;font-weight:700;line-height:1.5;">Need to add something to your brief? Reply to this email or contact us directly.</p>
+        <p style="margin:0;color:#c9cbcc;font-size:14px;line-height:1.8;"><a href="${siteContact.phoneHref}" style="color:${orange};text-decoration:none;font-weight:800;">${siteContact.phoneDisplay}</a><br><a href="mailto:${siteContact.email}" style="color:#fff;text-decoration:none;">${siteContact.email}</a><br><a href="${siteUrl}" style="color:#fff;text-decoration:none;">www.futuresigning.pk</a></p>
+      </td></tr>
+      <tr><td style="padding:18px 34px;background:#ece9e3;color:#6b6d70;font-size:12px;line-height:1.6;">This is an automated confirmation of your website enquiry.<br><strong style="color:${ink};">Future Signing</strong> · Your Brand. On Everything.</td></tr>
+    </table>
+  </td></tr></table>
+</body></html>`;
+
+  return { subject, html, text };
 }

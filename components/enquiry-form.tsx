@@ -67,7 +67,7 @@ export function EnquiryForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as { message?: string; reference?: string };
+      const result = (await response.json()) as { message?: string; reference?: string; confirmationSent?: boolean };
       if (!response.ok) throw new Error(result.message || "Unable to send your quote request.");
 
       trackGoogleEvent("form_submit", {
@@ -76,7 +76,9 @@ export function EnquiryForm() {
         product_interest: String(data.get("interest") || "not_selected"),
       });
       setState("success");
-      setStatusMessage(result.message || "Thank you. We’ll contact you shortly.");
+      setStatusMessage(result.message || (result.confirmationSent
+        ? "We’ve emailed your confirmation. Our team will respond within 24 hours."
+        : "Thank you. Our team will respond within 24 hours."));
       setReference(result.reference || "");
       setInterest("");
       form.reset();
