@@ -1,4 +1,4 @@
-import { catalogueCategories } from "@/data/products";
+import { catalogueCategories, catalogueProducts } from "@/data/products";
 import { siteContact, siteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -10,9 +10,13 @@ export function GET() {
 
   const content = `# Future Signing
 
-> Future Signing is a Lahore-based B2B corporate gifting, customized-products, branded-merchandise and printing company serving organizations throughout Pakistan.
+> Future Signing provides corporate gifting, customized products, branded merchandise and custom printing for organizations throughout Pakistan.
 
-Future Signing develops custom product solutions based on quantity, artwork, branding method, budget, packaging and delivery deadline. It is a quotation-led service rather than a conventional online retail store.
+Tagline: Your Brand. On Everything.
+
+Future Signing develops corporate gift boxes, employee onboarding kits, customized drinkware, technology accessories, apparel, stationery, event merchandise, promotional products and packaging. Recommendations are based on quantity, artwork, branding method, budget, presentation and delivery deadline. Future Signing is a quotation-led B2B service rather than a conventional online retail store.
+
+The current online catalogue contains ${catalogueProducts.length} product listings across ${catalogueCategories.length} categories. Product availability, material, colours, dimensions and branding suitability are confirmed before production.
 
 Canonical website: ${siteUrl}
 Phone and WhatsApp: ${siteContact.phoneDisplay}
