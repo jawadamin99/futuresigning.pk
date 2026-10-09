@@ -7,7 +7,7 @@ import { HeroSlider } from "@/components/hero-slider";
 import { ClientLogoMarquee } from "@/components/client-logo-marquee";
 import { ArrowRight, ArrowUpRight, MailIcon, PinIcon, ProcessIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories } from "@/data/products";
-import { siteContact, siteName, siteUrl } from "@/lib/site";
+import { siteContact, siteName, siteSocial, siteUrl } from "@/lib/site";
 
 const wa = siteContact.whatsappHref;
 const trustItems = ["Corporate gifting", "Employee onboarding", "Custom merchandise", "Bulk-order support", "Nationwide delivery"];
@@ -114,6 +114,7 @@ const homeSchema = {
       name: "Future Signing",
       slogan: "Your Brand. On Everything.",
       url: siteUrl,
+      sameAs: Object.values(siteSocial),
       logo: {
         "@type": "ImageObject",
         url: `${siteUrl}/images/brand/future-signing-logo-full.png`,

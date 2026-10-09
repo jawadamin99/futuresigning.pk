@@ -4,7 +4,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowRight, ArrowUpRight, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
-import { siteContact, siteName, siteUrl } from "@/lib/site";
+import { siteContact, siteName, siteSocial, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote",
@@ -25,6 +25,7 @@ export default function ContactPage() {
     "@type": "Organization",
     name: "Future Signing",
     url: siteUrl,
+    sameAs: Object.values(siteSocial),
     logo: `${siteUrl}/images/brand/future-signing-logo-full.png`,
     email: siteContact.email,
     telephone: siteContact.phoneInternational,

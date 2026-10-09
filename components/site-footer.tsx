@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, WhatsAppIcon } from "@/components/ui/icons";
-import { siteContact } from "@/lib/site";
+import { ArrowRight, ArrowUpRight, FacebookIcon, InstagramIcon, TikTokIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { siteContact, siteSocial } from "@/lib/site";
 
 export function SiteFooter() {
   return <footer className="site-footer">
@@ -17,7 +17,7 @@ export function SiteFooter() {
         <div className="footer-brand"><p>Premium corporate gifting, branded merchandise and custom production for businesses across Pakistan.</p><a className="footer-email" href={`mailto:${siteContact.email}`}>{siteContact.email} <ArrowRight /></a></div>
         <nav className="footer-column" aria-label="Explore"><h3>Explore</h3><Link href="/products">Products</Link><Link href="/#solutions">Solutions</Link><Link href="/#process">How it works</Link><Link href="/#about">About us</Link><Link href="/#faq">FAQ</Link><Link href="/contact">Contact</Link></nav>
         <nav className="footer-column" aria-label="Product categories"><h3>Popular requests</h3><Link href="/products/gift-boxes">Corporate gift boxes</Link><Link href="/products/bottles-mugs">Bottles &amp; mugs</Link><Link href="/products/office-gifts">Office gifts</Link><Link href="/products/corporate-accessories">Corporate accessories</Link><Link href="/products/electronics-accessories">Electronics &amp; accessories</Link></nav>
-        <div className="footer-column footer-contact"><h3>Contact</h3><a href={siteContact.whatsappHref} target="_blank" rel="noreferrer"><WhatsAppIcon /> {siteContact.phoneDisplay}</a><a href={siteContact.phoneHref}>Call us directly</a><p className="footer-delivery">Nationwide delivery across Pakistan</p><div className="social-links" aria-label="Social media"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">TikTok</a></div></div>
+        <div className="footer-column footer-contact"><h3>Contact</h3><a href={siteContact.whatsappHref} target="_blank" rel="noreferrer"><WhatsAppIcon /> {siteContact.phoneDisplay}</a><a href={siteContact.phoneHref}>Call us directly</a><p className="footer-delivery">Nationwide delivery across Pakistan</p><div className="social-links" aria-label="Follow Future Signing"><a href={siteSocial.facebook} target="_blank" rel="noreferrer" aria-label="Future Signing on Facebook"><FacebookIcon /></a><a href={siteSocial.instagram} target="_blank" rel="noreferrer" aria-label="Future Signing on Instagram"><InstagramIcon /></a><a href={siteSocial.tiktok} target="_blank" rel="noreferrer" aria-label="Future Signing on TikTok"><TikTokIcon /></a></div></div>
       </div>
 
       <div className="footer-wordmark" aria-hidden="true">FUTURE SIGNING</div>
